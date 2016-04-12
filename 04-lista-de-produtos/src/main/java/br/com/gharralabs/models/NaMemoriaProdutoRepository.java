@@ -2,6 +2,9 @@ package br.com.gharralabs.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class NaMemoriaProdutoRepository implements ProdutoRepository {
 	
 private static List<Produto> produtos = new ArrayList();
@@ -28,5 +31,13 @@ private static List<Produto> produtos = new ArrayList();
 		// TODO Auto-generated method stub
 		return produtos;
 	}
+	@Override
+	public Produto obterPorId(long id){
+		return produtos.stream()
+				.filter(p -> p.getId() == id)
+				.findFirst()
+				.get();
+	}
+	
 
 }
