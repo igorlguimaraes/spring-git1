@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.gharralabs.models.Produto;
 import br.com.gharralabs.models.ProdutoService;
@@ -17,9 +18,11 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@RequestMapping("/produtos")
-	public String todos(Model model){
-		
-		model.addAttribute("produtos", produtoService.obterTodos());
+	public String todos(@RequestParam(value="categoriaId", required= false)Long id, Model model){
+		if(id==null)
+			model.addAttribute("produtos", produtoService.obterTodos());
+		else
+			model.addAttribute("produtos", produtoService.obterPorCategoria(id));
 		return "produtos";
 	}
 	@RequestMapping("/detalhe/{id}")

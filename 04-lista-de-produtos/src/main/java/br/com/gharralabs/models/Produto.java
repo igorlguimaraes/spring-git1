@@ -1,6 +1,12 @@
 package br.com.gharralabs.models;
 
 public class Produto {
+	
+	private long id;
+	private String nome;
+	private Number preco;
+	private Categoria categoria;
+
 	public long getId() {
 		return id;
 	}
@@ -19,8 +25,12 @@ public class Produto {
 	public void setPreco(Number preco) {
 		this.preco = preco;
 	}
-	private long id;
-	private String nome;
-	private Number preco;
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 }
